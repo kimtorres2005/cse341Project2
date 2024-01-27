@@ -1,4 +1,4 @@
-const { body, query, param, validationResult } = require("express-validator");
+const { body, param, validationResult } = require("express-validator");
 const { Recipe, RecipeDetails } = require('../models');
 
 const validate = (validationKey) => {
