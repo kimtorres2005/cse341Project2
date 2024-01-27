@@ -30,6 +30,9 @@ const generateRandomRecipeId = () => {
 // POST a new recipe (Will add recipe fields info to both collections)
 recipesController.postRecipe = async (req, res) => {
   try {
+    // swagger.tags = ['Recipes'];
+    // swagger.description = 'This endpoint will add a new recipe to the database.';
+
     const newRecipeData = req.body;
 
     // Generate a random 9-digit recipeId
@@ -62,7 +65,7 @@ recipesController.postRecipe = async (req, res) => {
 
     await RecipeDetails.postRecipeDetails(newRecipeDetailsData);
 
-    res.status(201).json(createdRecipe);
+    res.status(201).json({ createdRecipe, newRecipeDetailsData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -72,6 +75,9 @@ recipesController.postRecipe = async (req, res) => {
 // PUT a recipe by ID (Will update all recipe fields for both collections)
 recipesController.putRecipeById = async (req, res) => {
   try {
+    // swagger.tags = ['Recipes'];
+    // swagger.description = 'This endpoint will update a recipe in the database.';
+
     const recipeId = req.params.id;
     const update = req.body;
 
@@ -94,14 +100,21 @@ recipesController.putRecipeById = async (req, res) => {
       prepTime: times.prepTime,
       cookTime: times.cookTime,
       totalTime: times.totalTime,
-      // Add other fields from the update as needed
+      ingredients: req.body.ingredients || [],
+      instructions: req.body.instructions || [],
+      notes: req.body.notes || "",
     };
     await RecipeDetails.updateById(recipeId, updatedRecipeDetailsData);
 
-    res.status(200).json(updatedRecipe);
+    res.status(200).json({
+      updatedRecipe: updatedRecipe,
+      updatedRecipeDetailsData: updatedRecipeDetailsData,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
   }
 };
 
@@ -110,13 +123,19 @@ recipesController.deleteRecipeById = async (req, res) => {
   try {
     const recipeId = req.params.id;
 
+    // Fetch recipe details before deletion
+    const recipeDetails = await RecipeDetails.findById(recipeId);
+
+    // If recipe details are found, get the name
+    const name = recipeDetails ? recipeDetails.name : "Unknown Recipe";
+
     // Delete from the "recipes" collection
     await Recipe.deleteById(recipeId);
 
     // Delete from the "recipe_details" collection
     await RecipeDetails.deleteById(recipeId);
 
-    res.status(204).end();
+    res.status(200).json({ message: `${name} deleted successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

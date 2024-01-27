@@ -8,6 +8,11 @@ const recipeSchema = new mongoose.Schema({
     description: { type: String, required: true },
 }, { collection: 'recipes' });
 
+// find all recipes 
+recipeSchema.statics.findAll = async function () {
+    return this.find({});
+};
+
 recipeSchema.statics.findByCategory = async function (category) {
     return this.find({ category: category });
 };
@@ -50,6 +55,14 @@ recipeDetailsSchema.statics.findById = async function (recipeId) {
 recipeDetailsSchema.statics.postRecipeDetails = async function (recipeDetails) {
     return this.create(recipeDetails);
 };
+
+recipeDetailsSchema.statics.updateById = async function (recipeId, update) {
+    return this.findOneAndUpdate({ recipeId: recipeId }, update, { new: true });
+};
+
+recipeDetailsSchema.statics.deleteById = async function (recipeId) {
+    return this.findOneAndDelete({ recipeId: recipeId });
+}
 
 const RecipeDetails = mongoose.model('RecipeDetails', recipeDetailsSchema);
 
