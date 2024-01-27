@@ -204,7 +204,7 @@
     },
     "/recipes/category/{category}": {
       "get": {
-        "description": "Enter any category you would like. Choose from: main, side, dessert, appetizer, drink, or other. The search parameters are not case sensitive. This will pull up a list of all recipes in that category. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes.",
+        "description": "Enter any category you would like. Choose from: main, side, dessert, appetizer, drink, or other. The search parameters are not case sensitive. This will pull up a list of all recipes in that category. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. When you find the recipe you are looking for, copy the recipeId and use it to pull up the details of the recipe.",
         "parameters": [
           {
             "name": "category",
@@ -228,7 +228,7 @@
     },
     "/recipes/cuisine/{cuisine}": {
       "get": {
-        "description": "Search by any cuisine you can think of. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. The search parameters are not case sensitive. This will pull up a list of all recipes in that cuisine type.",
+        "description": "Search by any cuisine you can think of. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. The search parameters are not case sensitive. This will pull up a list of all recipes in that cuisine type. When you find the recipe you are looking for, copy the recipeId and use it to pull up the details of the recipe.",
         "parameters": [
           {
             "name": "cuisine",
