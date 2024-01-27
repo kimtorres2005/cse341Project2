@@ -124,46 +124,53 @@
             "type": "string"
           },
           {
-            "name": {
-              "type": "string",
-              "example": "any"
-            },
-            "category": {
-              "type": "string",
-              "example": "any"
-            },
-            "cuisine": {
-              "type": "string",
-              "example": "any"
-            },
-            "description": {
-              "type": "string",
-              "example": "Add a brief description of your recipe. This will be displayed in the list of recipes."
-            },
-            "prepTime": {
-              "type": "integer",
-              "example": "any"
-            },
-            "cookTime": {
-              "type": "integer",
-              "example": "any"
-            },
-            "ingredients": {
-              "type": "array",
-              "example": [],
-              "items": {
-                "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "cuisine": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Add a brief description of your recipe. This will be displayed in the list of recipes."
+                },
+                "prepTime": {
+                  "type": "integer",
+                  "example": "any"
+                },
+                "cookTime": {
+                  "type": "integer",
+                  "example": "any"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "example": [],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "instructions": {
+                  "type": "array",
+                  "example": [],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "notes": {
+                  "example": "Add any notes that you would like to include that might help the user."
+                }
               }
-            },
-            "instructions": {
-              "type": "array",
-              "example": [],
-              "items": {
-                "type": "string"
-              }
-            },
-            "notes": {
-              "example": "Add any notes that you would like to include that might help the user."
             }
           }
         ],
