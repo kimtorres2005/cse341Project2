@@ -5,9 +5,9 @@
     "version": "1.0.0",
     "description": "A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes."
   },
-  "host": "localhost:5100",
+  "host": "cse341project2-iu4l.onrender.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/recipes": {
       "get": {

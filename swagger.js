@@ -6,8 +6,8 @@ const doc = {
             version: '1.0.0',
             description: 'A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes.',
         },
-        host: 'localhost:5100',
-        schemes: ['http'],
+        host: 'cse341project2-iu4l.onrender.com',
+        schemes: ['https'],
 };
 
 const outputFile = './swagger_output.json';
