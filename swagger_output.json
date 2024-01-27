@@ -3,7 +3,7 @@
   "info": {
     "title": "CSE341 Project2 API",
     "version": "1.0.0",
-    "description": "A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes."
+    "description": "A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes. It allows you to search by recipeId, category, or cuisine. It also allows you to add, update, or delete a recipe in the database. There are two collections: recipes and recipe_details. The recipes collection contains a list of recipes with a description and id. The recipe_details collection contains the full recipe with all the details."
   },
   "host": "cse341project2-iu4l.onrender.com",
   "basePath": "/",
@@ -11,7 +11,7 @@
   "paths": {
     "/recipes": {
       "get": {
-        "description": "Get a list of all recipes from the recipes collection. This is simply a list of recipes with a description and id.",
+        "description": "Get a list of all recipes from the recipes collection. This is simply a list of all recipes with basic information about each recipe. This is a great place to copy the recipeId so that you can pull up the details of the recipe that you would like to see.",
         "responses": {
           "200": {
             "description": "OK"
@@ -25,7 +25,7 @@
         }
       },
       "post": {
-        "description": "Add a recipe. It will post in both collections.",
+        "description": "Add a recipe. It will post the necessary information into both collections. The recipeId will be generated automatically, so there is no need to enter an id number. The total time is calculated by adding the prepTime and cookTime together, and it is done automatically for you. You just need to enter the prepTime and cookTime in minutes only. The ingredients and instructions are arrays, so you can add as many as you need. The notes section is optional, so you can leave it blank if you don't have any notes to add.",
         "parameters": [
           {
             "name": "body",
@@ -47,7 +47,7 @@
                 },
                 "description": {
                   "type": "string",
-                  "example": "Creamy and delicious chicken alfredo pasta for the whole family."
+                  "example": "Add a brief description of your recipe. This will be displayed in the list of recipes."
                 },
                 "prepTime": {
                   "type": "integer",
@@ -72,7 +72,7 @@
                   }
                 },
                 "notes": {
-                  "example": "Feel free to add vegetables like broccoli or spinach for extra flavor and nutrition."
+                  "example": "Add any notes that you would like to include that might help the user."
                 }
               }
             }
@@ -93,7 +93,7 @@
     },
     "/recipes/{id}": {
       "get": {
-        "description": "Get a recipe by id from the recipe_details collection.",
+        "description": "Get a recipe by recipeId. This will pull the detailed recipe from the recipe_details collection. This is where you will find all the information about the recipe.",
         "parameters": [
           {
             "name": "id",
@@ -115,7 +115,7 @@
         }
       },
       "put": {
-        "description": "Update a recipe by id from both collections.",
+        "description": "Update a recipe by recipeId. This will update the recipe in both collections. The recipeId cannot be changed. The total time is calculated by adding the prepTime and cookTime together, and it is done automatically for you. You just need to enter the prepTime and cookTime in minutes only. The ingredients and instructions are arrays, so you can add as many as you need. The notes section is optional, so you can leave it blank if you don't have any notes to add.",
         "parameters": [
           {
             "name": "id",
@@ -124,53 +124,46 @@
             "type": "string"
           },
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "any"
-                },
-                "category": {
-                  "type": "string",
-                  "example": "any"
-                },
-                "cuisine": {
-                  "type": "string",
-                  "example": "any"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "Creamy and delicious chicken alfredo pasta for the whole family."
-                },
-                "prepTime": {
-                  "type": "integer",
-                  "example": "any"
-                },
-                "cookTime": {
-                  "type": "integer",
-                  "example": "any"
-                },
-                "ingredients": {
-                  "type": "array",
-                  "example": [],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "instructions": {
-                  "type": "array",
-                  "example": [],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "notes": {
-                  "example": "Feel free to add vegetables like broccoli or spinach for extra flavor and nutrition."
-                }
+            "name": {
+              "type": "string",
+              "example": "any"
+            },
+            "category": {
+              "type": "string",
+              "example": "any"
+            },
+            "cuisine": {
+              "type": "string",
+              "example": "any"
+            },
+            "description": {
+              "type": "string",
+              "example": "Add a brief description of your recipe. This will be displayed in the list of recipes."
+            },
+            "prepTime": {
+              "type": "integer",
+              "example": "any"
+            },
+            "cookTime": {
+              "type": "integer",
+              "example": "any"
+            },
+            "ingredients": {
+              "type": "array",
+              "example": [],
+              "items": {
+                "type": "string"
               }
+            },
+            "instructions": {
+              "type": "array",
+              "example": [],
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "example": "Add any notes that you would like to include that might help the user."
             }
           }
         ],
@@ -187,7 +180,7 @@
         }
       },
       "delete": {
-        "description": "Delete a recipe by id from both collections.",
+        "description": "Delete a recipe by recipeId. This will delete the recipe from both collections. This cannot be undone, so proceed with caution.",
         "parameters": [
           {
             "name": "id",
@@ -211,7 +204,7 @@
     },
     "/recipes/category/{category}": {
       "get": {
-        "description": "Choose from: main, side, dessert, appetizer, drink, or other.",
+        "description": "Enter any category you would like. Choose from: main, side, dessert, appetizer, drink, or other. The search parameters are not case sensitive. This will pull up a list of all recipes in that category. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes.",
         "parameters": [
           {
             "name": "category",
@@ -235,7 +228,7 @@
     },
     "/recipes/cuisine/{cuisine}": {
       "get": {
-        "description": "Search by any cuisine you can think of.",
+        "description": "Search by any cuisine you can think of. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. The search parameters are not case sensitive. This will pull up a list of all recipes in that cuisine type.",
         "parameters": [
           {
             "name": "cuisine",

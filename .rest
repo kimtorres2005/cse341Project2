@@ -1,0 +1,112 @@
+###################################################
+# The following is for testing with localhost:5100
+###################################################
+
+```
+
+# Home Page
+GET http://localhost:5100/
+
+# Get All Recipes
+GET http://localhost:5100/recipes
+
+# Get Recipes By Category
+GET http://localhost:5100/recipes/category/"Enter a category"
+
+# Get Recipes By Cuisine
+GET http://localhost:5100/recipes/cuisine/"Enter a cuisine"
+
+# Get Recipe By ID
+GET http://localhost:5100/recipes/"Enter a recipe ID"
+
+# Post a New Recipe
+POST http://localhost:5100/recipes
+Content-Type: application/json
+
+{
+  "name": "New Recipe",
+  "category": "New Category",
+  "cuisine": "New Cuisine",
+  "description": "New Description",
+  "prepTime": 30,
+  "cookTime": 60,
+  "ingredients": ["Ingredient 1", "Ingredient 2"],
+  "instructions": ["Step 1", "Step 2"],
+  "notes": "New Notes"
+}
+
+# Put Recipe By ID
+PUT http://localhost:5100/recipes/"Enter a recipe ID"
+Content-Type: application/json
+
+{
+  "name": "Updated Recipe",
+  "category": "Updated Category",
+  "cuisine": "Updated Cuisine",
+  "description": "Updated Description",
+  "prepTime": 45,
+  "cookTime": 75,
+  "ingredients": ["Updated Ingredient 1", "Updated Ingredient 2"],
+  "instructions": ["Updated Step 1", "Updated Step 2"],
+  "notes": "Updated Notes"
+}
+
+# Delete Recipe By ID
+DELETE http://localhost:5100/recipes/"Enter a recipe ID"
+```
+
+#######################################################
+# The following is for testing with Render
+#######################################################
+
+```
+# Home Page
+GET https://cse341project2-iu4l.onrender.com
+
+# Get All Recipes
+GET https://cse341project2-iu4l.onrender.com/recipes
+
+# Get Recipes By Category
+GET https://cse341project2-iu4l.onrender.com/recipes/category/"Enter a category"
+
+# Get Recipes By Cuisine
+GET https://cse341project2-iu4l.onrender.com/recipes/cuisine/"Enter a cuisine"
+
+# Get Recipe By ID
+GET https://cse341project2-iu4l.onrender.com/recipes/"Enter a recipe ID"
+
+# Post a New Recipe
+POST https://cse341project2-iu4l.onrender.com/recipes
+Content-Type: application/json
+
+{
+  "name": "New Recipe",
+  "category": "New Category",
+  "cuisine": "New Cuisine",
+  "description": "New Description",
+  "prepTime": 30,
+  "cookTime": 60,
+  "ingredients": ["Ingredient 1", "Ingredient 2"],
+  "instructions": ["Step 1", "Step 2"],
+  "notes": "New Notes"
+}
+
+# Put Recipe By ID
+PUT https://cse341project2-iu4l.onrender.com/recipes/"Enter a recipe ID"
+Content-Type: application/json
+
+{
+  "name": "Updated Recipe",
+  "category": "Updated Category",
+  "cuisine": "Updated Cuisine",
+  "description": "Updated Description",
+  "prepTime": 45,
+  "cookTime": 75,
+  "ingredients": ["Updated Ingredient 1", "Updated Ingredient 2"],
+  "instructions": ["Updated Step 1", "Updated Step 2"],
+  "notes": "Updated Notes"
+}
+
+# Delete Recipe By ID
+DELETE https://cse341project2-iu4l.onrender.com/recipes/"Enter a recipe ID"
+```
