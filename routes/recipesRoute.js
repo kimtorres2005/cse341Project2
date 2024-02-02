@@ -2,6 +2,7 @@ const router = require('express').Router();
 const controller = require('../controllers/recipesController');
 const controller2 = require('../controllers/recipesGetController');
 const { validate, validationMiddleware } = require('../middleware/validationMiddleware');
+const { authenticate } = require('../middleware/authenticate');
 
 // GET a list of all recipes (Will return all recipes from only the recipes collection)
 router.get('/', validationMiddleware, controller2.getAllRecipes);
@@ -16,12 +17,12 @@ router.get('/cuisine/:cuisine', validate('getRecipesByCuisine'), validationMiddl
 router.get('/:id', validate('getRecipeById'), validationMiddleware, controller2.getRecipeById);
 
 // POST a new recipe (Will add recipe fields info to both collections)
-router.post('/', validate('postRecipe'), validationMiddleware, controller.postRecipe);
+router.post('/', authenticate, validate('postRecipe'), validationMiddleware, controller.postRecipe);
 
 // PUT a recipe by ID (Will update all recipe fields for both collections)
-router.put('/:id', validate('putRecipeById'), validationMiddleware, controller.putRecipeById);
+router.put('/:id', authenticate, validate('putRecipeById'), validationMiddleware, controller.putRecipeById);
 
 // DELETE a recipe by ID (Will delete recipe from both collections)
-router.delete('/:id', validate('deleteRecipeById'), validationMiddleware, controller.deleteRecipeById);
+router.delete('/:id', authenticate, validate('deleteRecipeById'), validationMiddleware, controller.deleteRecipeById);
 
 module.exports = router;

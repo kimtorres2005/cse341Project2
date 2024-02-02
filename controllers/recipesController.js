@@ -30,7 +30,7 @@ const generateRandomRecipeId = () => {
 // POST a new recipe (Will add recipe fields info to both collections)
 recipesController.postRecipe = async (req, res) => {
   try {
-    // swagger.tags = ['Recipes'];
+    // swagger.tags = ['Recipe Details'];
     // swagger.description = 'This endpoint will add a new recipe to the database.';
 
     const newRecipeData = req.body;
@@ -75,7 +75,7 @@ recipesController.postRecipe = async (req, res) => {
 // PUT a recipe by ID (Will update all recipe fields for both collections)
 recipesController.putRecipeById = async (req, res) => {
   try {
-    // swagger.tags = ['Recipes'];
+    // swagger.tags = ['Recipe Details'];
     // swagger.description = 'This endpoint will update a recipe in the database.';
 
     const recipeId = req.params.id;
@@ -120,6 +120,7 @@ recipesController.putRecipeById = async (req, res) => {
 
 // DELETE a recipe by ID (Will delete recipe from both collections)
 recipesController.deleteRecipeById = async (req, res) => {
+  // swagger.tags = ['Recipe Details'];
   try {
     const recipeId = req.params.id;
 

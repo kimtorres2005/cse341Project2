@@ -11,6 +11,7 @@
   "paths": {
     "/recipes": {
       "get": {
+        "tags": ["Recipes"],
         "description": "Get a list of all recipes from the recipes collection. This is simply a list of all recipes with basic information about each recipe. This is a great place to copy the recipeId so that you can pull up the details of the recipe that you would like to see.",
         "responses": {
           "200": {
@@ -25,6 +26,7 @@
         }
       },
       "post": {
+        "tags": ["Recipes"],
         "description": "Add a recipe. It will post the necessary information into both collections. The recipeId will be generated automatically, so there is no need to enter an id number. The total time is calculated by adding the prepTime and cookTime together, and it is done automatically for you. You just need to enter the prepTime and cookTime in minutes only. The ingredients and instructions are arrays, so you can add as many as you need. The notes section is optional, so you can leave it blank if you don't have any notes to add.",
         "parameters": [
           {
@@ -93,6 +95,7 @@
     },
     "/recipes/{id}": {
       "get": {
+        "tags": ["Recipe Details"],
         "description": "Get a recipe by recipeId. This will pull the detailed recipe from the recipe_details collection. This is where you will find all the information about the recipe.",
         "parameters": [
           {
@@ -115,6 +118,7 @@
         }
       },
       "put": {
+        "tags": ["Recipe Details"],
         "description": "Update a recipe by recipeId. This will update the recipe in both collections. The recipeId cannot be changed. The total time is calculated by adding the prepTime and cookTime together, and it is done automatically for you. You just need to enter the prepTime and cookTime in minutes only. The ingredients and instructions are arrays, so you can add as many as you need. The notes section is optional, so you can leave it blank if you don't have any notes to add.",
         "parameters": [
           {
@@ -187,6 +191,7 @@
         }
       },
       "delete": {
+        "tags": ["Recipe Details"],
         "description": "Delete a recipe by recipeId. This will delete the recipe from both collections. This cannot be undone, so proceed with caution.",
         "parameters": [
           {
@@ -211,6 +216,7 @@
     },
     "/recipes/category/{category}": {
       "get": {
+        "tags": ["Recipes"],
         "description": "Enter any category you would like. Choose from: main, side, dessert, appetizer, drink, or other. The search parameters are not case sensitive. This will pull up a list of all recipes in that category. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. When you find the recipe you are looking for, copy the recipeId and use it to pull up the details of the recipe.",
         "parameters": [
           {
@@ -235,6 +241,7 @@
     },
     "/recipes/cuisine/{cuisine}": {
       "get": {
+        "tags": ["Recipes"],
         "description": "Search by any cuisine you can think of. If it is not in the list, it will return an error message stating that the cuisine is not found in the list of recipes. The search parameters are not case sensitive. This will pull up a list of all recipes in that cuisine type. When you find the recipe you are looking for, copy the recipeId and use it to pull up the details of the recipe.",
         "parameters": [
           {
@@ -242,6 +249,75 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+
+    "/users": {
+      "get": {
+        "tags": ["User Management"],
+        "description": "Get a list of all users from the users collection. This is simply a list of all users with basic information about each user. This is a great place to copy the userId so that you can pull up the details of the user that you would like to see.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+
+    "/users/{id}": {
+      "put": {
+        "tags": ["User Management"],
+        "description": "Update a user by githubId. This will update the user in the users collection. The userId cannot be changed.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "displayName": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "profileUrl": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "avatarUrl": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {

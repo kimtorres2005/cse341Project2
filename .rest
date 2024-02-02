@@ -54,6 +54,11 @@ Content-Type: application/json
 # Delete Recipe By ID
 DELETE http://localhost:5100/recipes/"Enter a recipe ID"
 ```
+# GET all users
+GET http://localhost:5100/users
+
+# PUT user by ID
+PUT http://localhost:5100/users/"Enter a user ID"
 
 #######################################################
 # The following is for testing with Render
@@ -109,4 +114,10 @@ Content-Type: application/json
 
 # Delete Recipe By ID
 DELETE https://cse341project2-iu4l.onrender.com/recipes/"Enter a recipe ID"
+```
+# GET all users
+GET https://cse341project2-iu4l.onrender.com/users
+
+# PUT user by ID
+PUT https://cse341project2-iu4l.onrender.com/users/"Enter a user ID"
 ```

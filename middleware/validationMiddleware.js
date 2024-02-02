@@ -113,6 +113,18 @@ const validate = (validationKey) => {
           }),
       ];
 
+    case "putUserById":
+      return [
+        param("id")
+          .notEmpty()
+          .isInt()
+          .withMessage("Valid user ID is required"),
+        body("username").notEmpty().withMessage("Username is required"),
+        body("displayName").notEmpty().withMessage("Display name is required"),
+        body("profileUrl").notEmpty().withMessage("Profile URL is required"),
+        body("avatarUrl").notEmpty().withMessage("Avatar URL is required"),
+      ];
+
     default:
       return [];
   }

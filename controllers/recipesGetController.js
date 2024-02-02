@@ -49,7 +49,7 @@ recipesGetController.getRecipesByCategory = async (req, res) => {
 // GET a recipe by ID (Will return recipe from only the recipe_details collection)
 recipesGetController.getRecipeById = async (req, res) => {
   try {
-    // swagger.tags = ['Recipes'];
+    // swagger.tags = ['Recipe Details'];
     // swagger.description = 'This endpoint will return a recipe by ID in the database.';
 
     const recipeId = req.params.id;
@@ -59,7 +59,6 @@ recipesGetController.getRecipeById = async (req, res) => {
 
     // Combine the data before sending the response
     const combinedRecipe = {
-    //   ...recipe.toObject(),
       ...recipeDetails.toObject()
     };
 

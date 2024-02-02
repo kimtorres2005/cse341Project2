@@ -6,7 +6,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 const cors = require('cors');
 require('dotenv').config();
-const API_KEY = process.env.API_KEY;
+const passport = require('passport');
+const session = require('express-session')
+const { initializePassport, expressSession, } = require('./middleware/authenticate');
+// const API_KEY = process.env.API_KEY;
 
 // Middleware for CORS
 app.use(cors());
@@ -24,6 +27,19 @@ app.use((req, res, next) => {
     next();
 });
 
+// use session middleware
+app.use( session({ secret: 'secret', resave: false, saveUninitialized: true,}));
+
+// initialize passport and setup session management
+initializePassport();
+
+// use express session middleware
+app.use(expressSession);
+
+// initialize passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Middleware to serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, (req, res, next) => {
     swaggerUi.setup(swaggerFile)(req, res, next);
@@ -31,6 +47,7 @@ app.use('/api-docs', swaggerUi.serve, (req, res, next) => {
 
 // Middleware for body parsing
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // Routes
 app.use('/', require('./routes'));
