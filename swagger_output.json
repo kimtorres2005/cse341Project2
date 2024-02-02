@@ -3,7 +3,7 @@
   "info": {
     "title": "CSE341 Project2 API",
     "version": "1.0.0",
-    "description": "A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes. It allows you to search by recipeId, category, or cuisine. It also allows you to add, update, or delete a recipe in the database. There are two collections: recipes and recipe_details. The recipes collection contains a list of recipes with a description and id. The recipe_details collection contains the full recipe with all the details."
+    "description": "A simple recipes API for CSE341 to GET, POST, PUT, and DELETE recipes. It allows you to search by recipeId, category, or cuisine. It also allows you to add, update, or delete a recipe in the database. Then there is the ability to see and/or update users. Users are automatically added to the database when they login through GitHub OAuth. There are a total of 3 collections: recipes, recipe_details, and users. The recipes collection contains a list of recipes with a description and id. The recipe_details collection contains the full recipe with all the details. The users collection holds the details for a user based on what GitHub provides."
   },
   "host": "cse341project2-iu4l.onrender.com",
   "basePath": "/",
